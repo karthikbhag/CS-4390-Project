@@ -1,7 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 
-public class ClientHandler {
+public class ClientHandler implements Runnable {
     private Socket socket;
     private ClientInfo clientInfo;
 
@@ -46,7 +46,7 @@ public class ClientHandler {
                 if (message.equalsIgnoreCase("CLOSE")) {
                     out.println("BYE|Goodbye " + clientInfo.getName());
                     break;
-                }  else if (message.startWith("CALC|")) {
+                }  else if (message.startsWith("CALC|")) {
                     System.out.println(clientInfo.getName() + " sent: " + message);
                     String response = processCalculation(message);
                     out.println(response);
@@ -59,7 +59,7 @@ public class ClientHandler {
             System.out.println("Connection error: " + e.getMessage());
         } finally {
             if (clientInfo != null) {
-                System.out.println(clientInfo.getName() + " disconnected after " + clientInfo.getConnectionDurationSeconds() + " seconds"
+                System.out.println(clientInfo.getName() + " disconnected after " + clientInfo.getConnectedDurationSeconds() + " seconds"
                 );
             }
 
