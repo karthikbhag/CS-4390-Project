@@ -35,7 +35,15 @@ public class ClientHandler implements Runnable {
 
             clientInfo = new ClientInfo(name, socket, out);
 
-            System.out.println(clientInfo.getName() + " connected from " + clientInfo.getClientAddress());
+            if (!MathServer.registerClient(clientInfo)) {
+                out.println("ERROR|Name already in use. Choose a different name.");
+                socket.close();
+                return;
+            }
+
+            System.out.println("[+]" + clientInfo.getName() + " connected from " + clientInfo.getClientAddress());
+
+            MathServer.logConnectedClients();
 
             out.println("ACK|Welcome " + clientInfo.getName());
 
@@ -59,8 +67,9 @@ public class ClientHandler implements Runnable {
             System.out.println("Connection error: " + e.getMessage());
         } finally {
             if (clientInfo != null) {
-                System.out.println(clientInfo.getName() + " disconnected after " + clientInfo.getConnectedDurationSeconds() + " seconds"
-                );
+                MathServer.unregisterClient(clientInfo.getName());
+                System.out.println("[-] " + clientInfo.getName() + " disconnected after " + clientInfo.getConnectedDurationSeconds() + " seconds");
+                MathServer.logConnectedClients();
             }
 
             try {
