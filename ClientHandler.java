@@ -100,6 +100,9 @@ public class ClientHandler implements Runnable {
                 case "SUB":
                     result = num1 - num2;
                     break;
+                case "MUL":
+                    result = num1 * num2;
+                    break;
                 case "DIV":
                     if (num2 == 0) {
                         return "ERROR|Division by zero";
