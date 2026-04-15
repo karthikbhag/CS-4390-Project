@@ -102,7 +102,7 @@ public class ClientHandler implements Runnable {
                     break;
                 case "DIV":
                     if (num2 == 0) {
-                        return "Error|Division by zero";
+                        return "ERROR|Division by zero";
                     }
                     result = num1 / num2;
                     break;
