@@ -1,61 +1,47 @@
 public class Protocol {
   
     //the join message formatting
-    public static String JoinMsg(String clientName)
+    public static String JoinMsg(String name)
     {
-        return clientName + "|"+ "Join";
+        return "JOIN|" + name;
     }
 
     //the welcome message formatting
-    public static String AckMsg(String clientName)
+    public static String AckMsg(String name)
     {
-        return "ACK" + "|" + "Welcome" + clientName;
+        return "ACK|Welcome " + name;
     }
 
     //the calculation request message formatting
-    public static String CalcRequestMsg(String Expression)
+    public static String CalcRequestMsg(String op, String num1, String num2)
     {
-        return "CalcRequest" + "|" + Expression;
+        return "CALC|" + op + "|" + num1 + "|" + num2;
     }
 
     //the calculation response message formatting
-    public static String CalcSolutionMsg(String Expression,String Answer)
+    public static String CalcSolutionMsg(String value)
     {
-        return "CalcSolution" + "|" + Expression + "=" + Answer;
+        return "RESULT|" + value;
     }
     
     //the disconnect message formatting
-    public static String DisconnectMsg(String ClientName)
+    public static String DisconnectMsg(String name)
     {
-        return "Disconnect" + "|" + "See you later" + ClientName + "!";
+        return "BYE|Goodbye " + name;
     }
 
-
     //the error message formatting
-    public static String ErrorMsg(String Reason)
+    public static String ErrorMsg(String reason)
     {
-        return "Error" + "|" + Reason;
+        return "ERROR|" + reason;
     }
 
     //parses a raw message input to a readable format
-     public static String[] parse(String raw) {                                                                                                                                                                    
-          int idx = raw.indexOf("|");                                                                                                                                                                               
-          if (idx == -1) {
-              return new String[]{ "Error", raw };                                                                                                                                                                      
-          }                                                                                                                                                                                                         
-          String typeOf    = raw.substring(0, idx);
-          String payload = raw.substring(idx + 1);                                                                                                                                                                    
-          return new String[]{ typeOf, payload };
-      }
+    public static String getType(String message) {
+        return message.split("\\|")[0];
+    }
 
-         // get just the type from a raw message                                                                                                                                                                     
-      public static String getType(String raw) {
-          return parse(raw)[0];                                                                                                                                                                                       
-      }                                                                                                                                                                                                             
-
-      // get just the payload from a raw message
-      public static String getPayload(String raw) {
-          return parse(raw)[1];                                                                                                                                                                                       
-      }                                                                                                                                                                                                               
-         
+    public static String[] getParts(String message) {
+        return message.split("\\|");
+    }
 }
