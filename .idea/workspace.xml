@@ -7,13 +7,6 @@
     <list default="true" id="d7b0f3ad-fac9-4cde-83b1-7f78fe8fca99" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MathClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/MathClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Protocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/Protocol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-4390-Project/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-4390-Project/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-4390-Project/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-4390-Project/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-4390-Project/MathClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-4390-Project/MathClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS-4390-Project/Protocol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS-4390-Project/Protocol.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,39 +24,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MathClient.executor": "Run",
-    "Application.MathServer.executor": "Run",
-    "Makefile Target.Makefile.executor": "Run",
-    "Makefile Target.all.executor": "Run",
-    "Makefile Target.client.executor": "Run",
-    "Makefile Target.server.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/kbmlg/Documents/GitHub/CS-4390-Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MathClient.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MathServer.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.Makefile.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.all.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.client.executor&quot;: &quot;Run&quot;,
+    &quot;Makefile Target.server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kbmlg/Documents/GitHub/CS-4390-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Makefile Target.all">
+}</component>
+  <component name="RunManager" selected="Application.MathServer">
+    <configuration name="MathClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MathClient" />
+      <module name="CS-4390-Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MathServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MathServer" />
       <module name="CS-4390-Project" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Makefile" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="" workingDirectory="" arguments="">
-        <envs />
-      </makefile>
-      <method v="2" />
     </configuration>
     <configuration name="all" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
       <makefile filename="$PROJECT_DIR$/Makefile" target="all" workingDirectory="" arguments="">
@@ -85,11 +79,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MathServer" />
+        <item itemvalue="Application.MathClient" />
         <item itemvalue="Makefile Target.all" />
         <item itemvalue="Makefile Target.server" />
         <item itemvalue="Makefile Target.client" />
-        <item itemvalue="Makefile Target.Makefile" />
-        <item itemvalue="Application.MathServer" />
       </list>
     </recent_temporary>
   </component>

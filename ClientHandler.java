@@ -59,8 +59,8 @@ public class ClientHandler implements Runnable {
 //                    System.out.println("DEBUG server received: " + message);
                     String response = processCalculation(message);
                     String resultValue = response.substring(response.indexOf("|") + 1);
-                    System.out.println("[CALC] " + clientInfo.getName() + " → " + message);
-                    System.out.println("[RESULT] " + clientInfo.getName() + " ← " + resultValue);
+                    System.out.println("[CALC] " + clientInfo.getName() + " -> " + message);
+                    System.out.println("[RESULT] " + clientInfo.getName() + " <- " + resultValue);
                     out.println(response);
 //                    System.out.println("Sent to " + clientInfo.getName() + ": " + response);
                 } else {
