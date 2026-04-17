@@ -19,13 +19,14 @@ public class ClientHandler implements Runnable {
             // First message should be JOIN|name
             String firstMessage = in.readLine();
 
-            if (firstMessage == null || !firstMessage.startsWith("JOIN|")) {
+            if (firstMessage == null || !Protocol.getType(firstMessage).equals("JOIN")) {
                 out.println("ERROR|First message must be JOIN|name");
                 socket.close();
                 return;
             }
 
-            String name = firstMessage.substring("JOIN|".length()).trim();
+            String[] parts = Protocol.getParts(firstMessage);
+            String name = parts.length > 1 ? parts[1].trim() : "";
 
             if (name.isEmpty()) {
                 out.println("ERROR|Name cannot be empty");
@@ -45,22 +46,25 @@ public class ClientHandler implements Runnable {
 
             MathServer.logConnectedClients();
 
-            out.println("ACK|Welcome " + clientInfo.getName());
+            out.println(Protocol.AckMsg(clientInfo.getName()));
 
             String message;
             while ((message = in.readLine()) != null) {
                 message = message.trim();
 
-                if (message.equalsIgnoreCase("CLOSE")) {
-                    out.println("BYE|Goodbye " + clientInfo.getName());
+                if (Protocol.getType(message).equals("CLOSE")) {
+                    out.println(Protocol.DisconnectMsg(clientInfo.getName()));
                     break;
-                }  else if (message.startsWith("CALC|")) {
-                    System.out.println(clientInfo.getName() + " sent: " + message);
+                }  else if (Protocol.getType(message).equals("CALC")) {
+//                    System.out.println("DEBUG server received: " + message);
                     String response = processCalculation(message);
+                    String resultValue = response.substring(response.indexOf("|") + 1);
+                    System.out.println("[CALC] " + clientInfo.getName() + " → " + message);
+                    System.out.println("[RESULT] " + clientInfo.getName() + " ← " + resultValue);
                     out.println(response);
-                    System.out.println("Sent to " + clientInfo.getName() + ": " + response);
+//                    System.out.println("Sent to " + clientInfo.getName() + ": " + response);
                 } else {
-                    out.println("ERROR|Unknown command");
+                    out.println(Protocol.ErrorMsg("Unknown command"));
                 }
             }
         } catch (IOException e) {
@@ -114,9 +118,9 @@ public class ClientHandler implements Runnable {
             }
 
             if (result == (long) result) {
-                return "RESULT|" + (long) result;
+                return Protocol.CalcSolutionMsg(String.valueOf((long) result));
             } else {
-                return "RESULT|" + result;
+                return Protocol.CalcSolutionMsg(String.valueOf(result));
             }
         } catch (NumberFormatException e) {
             return "ERROR|Operands must be numbers";

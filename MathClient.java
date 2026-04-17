@@ -20,7 +20,7 @@ public class MathClient {
         System.out.println("Connected to server at " + HOST + ":" + PORT);
 
         // Send JOIN, wait for ACK
-        out.println("JOIN|" + clientName);
+        out.println(Protocol.JoinMsg(clientName));
         String ack = in.readLine();
         if (ack == null || !ack.startsWith("ACK|")) {
             System.out.println("Handshake failed: " + ack);
@@ -42,7 +42,7 @@ public class MathClient {
 
             if (input.equalsIgnoreCase("QUIT")) {
                 // Graceful disconnect
-                out.println("CLOSE");
+                out.println(Protocol.close());
                 String bye = in.readLine();
                 if (bye != null) {
                     System.out.println("Server: " + bye.substring(bye.indexOf("|") + 1));
@@ -57,7 +57,8 @@ public class MathClient {
                 continue;
             }
 
-            String request = "CALC|" + parts[0].toUpperCase() + "|" + parts[1] + "|" + parts[2];
+            String request = Protocol.CalcRequestMsg(parts[0].toUpperCase(), parts[1], parts[2]);
+//            System.out.println("DEBUG client sending: " + request);
             out.println(request);
 
             String response = in.readLine();

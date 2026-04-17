@@ -23,7 +23,10 @@ public class Protocol {
     {
         return "RESULT|" + value;
     }
-    
+
+    public static String close() {
+        return "CLOSE";
+    }
     //the disconnect message formatting
     public static String DisconnectMsg(String name)
     {
