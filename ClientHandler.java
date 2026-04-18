@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 
+//Handles communication between server and client
 public class ClientHandler implements Runnable {
     private Socket socket;
     private ClientInfo clientInfo;
@@ -12,11 +13,13 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         try (
+                //Input stream to receive messages from client
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(socket.getInputStream()));
+                //Output stream to send messages to client
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true)
         ) {
-            // First message should be JOIN|name
+            //First message should be JOIN|name
             String firstMessage = in.readLine();
 
             if (firstMessage == null || !Protocol.getType(firstMessage).equals("JOIN")) {
@@ -25,6 +28,7 @@ public class ClientHandler implements Runnable {
                 return;
             }
 
+            //Extract client name from JOIN message
             String[] parts = Protocol.getParts(firstMessage);
             String name = parts.length > 1 ? parts[1].trim() : "";
 
@@ -34,6 +38,7 @@ public class ClientHandler implements Runnable {
                 return;
             }
 
+            //Create client record
             clientInfo = new ClientInfo(name, socket, out);
 
             if (!MathServer.registerClient(clientInfo)) {
@@ -42,12 +47,14 @@ public class ClientHandler implements Runnable {
                 return;
             }
 
+            //Log connection and show clients
             System.out.println("[+]" + clientInfo.getName() + " connected from " + clientInfo.getClientAddress());
 
             MathServer.logConnectedClients();
 
             out.println(Protocol.AckMsg(clientInfo.getName()));
 
+            //Handle Client Requests
             String message;
             while ((message = in.readLine()) != null) {
                 message = message.trim();
@@ -83,6 +90,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    //Handles parsing and execution of CALC messages
     private String processCalculation(String message) {
         try {
             String[] parts = message.split("\\|");
@@ -97,6 +105,7 @@ public class ClientHandler implements Runnable {
 
             double result;
 
+            //Do requested operation
             switch (operation) {
                 case "ADD":
                     result = num1 + num2;

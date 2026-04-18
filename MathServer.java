@@ -8,9 +8,7 @@ public class MathServer {
 
     private static final int PORT = 6789;
 
-    // Shared registry of all currently connected clients, keyed by client name.
-    // ConcurrentHashMap allows ClientHandler threads to read/write it safely.
-
+    //ConcurrentHashMap allows ClientHandler threads to read/write it safely.
     private static final ConcurrentHashMap<String, ClientInfo> connectedClients = new ConcurrentHashMap<>();
 
     public static void main (String[] args) {
@@ -30,7 +28,6 @@ public class MathServer {
     }
 
     //Registry helpers called by ClientHandler
-
     public static boolean registerClient(ClientInfo info) {
         return connectedClients.putIfAbsent(info.getName(), info) == null;
     }

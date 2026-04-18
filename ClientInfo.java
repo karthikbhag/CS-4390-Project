@@ -10,6 +10,7 @@ public class ClientInfo {
     private LocalDateTime connectTime;
     private PrintWriter out;
 
+    //Client info
     public ClientInfo(String name, Socket socket, PrintWriter out) {
         this.name = name;
         this.socket = socket;
@@ -39,7 +40,6 @@ public class ClientInfo {
         return duration.getSeconds();
     }
 
-    // Optional:nice formatted string for logging
     public String getClientAddress() {
         return socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
     }

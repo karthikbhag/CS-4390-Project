@@ -9,7 +9,7 @@ public class MathClient {
     public static void main(String[] args) throws Exception {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
-        // Get client name
+        //Get client name
         System.out.print("Enter your name: ");
         String clientName = console.readLine().trim();
 
@@ -19,7 +19,7 @@ public class MathClient {
 
         System.out.println("Connected to server at " + HOST + ":" + PORT);
 
-        // Send JOIN, wait for ACK
+        //Send JOIN, wait for ACK
         out.println(Protocol.JoinMsg(clientName));
         String ack = in.readLine();
         if (ack == null || !ack.startsWith("ACK|")) {
@@ -29,7 +29,7 @@ public class MathClient {
         }
         System.out.println("Server: " + ack.substring("ACK|".length()));
 
-        // Interactive request loop
+        //Interactive request loop
         System.out.println("\nEnter calculations as: ADD 5 3 | SUB 10 4 | MUL 3 3 | DIV 9 3");
         System.out.println("Type QUIT to disconnect.\n");
 
@@ -50,7 +50,7 @@ public class MathClient {
                 break;
             }
 
-            // Parse "OP num1 num2" into CALC|OP|num1|num2
+            //Parse "OP num1 num2" into CALC|OP|num1|num2
             String[] parts = input.split("\\s+");
             if (parts.length != 3) {
                 System.out.println("Usage: ADD 5 3");
